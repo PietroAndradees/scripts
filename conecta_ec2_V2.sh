@@ -53,7 +53,7 @@ instance_id_selection=$(echo "$instances" | awk "NR==$selection{print $1}")
 echo $instance_id_selection >> list
 
 if [[ -z "$instance_id" ]]; then
-  echo "Opção inválida"
+  echo "Opção inválida !"
   exit 1
 fi
 clear
