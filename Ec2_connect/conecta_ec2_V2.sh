@@ -9,10 +9,10 @@ Red='\033[0;31m'          # Red
 BYellow='\033[1;33m'      # Yellow
 
 
-touch list
+touch ~/.ssh/list
 echo "Instâncias previamente encontradas:"
 echo ""
-cat list | sort | uniq -c | sort -nr | awk '{print $2, $3}' | head -n 20 | awk '{print NR,"=>",$0}'
+cat ~/.ssh/list | sort | uniq -c | sort -nr | awk '{print $2, $3}' | head -n 20 | awk '{print NR,"=>",$0}'
 echo -e "${Blue}0 => Para buscar uma instância no console EC2 ☁️ ${Color_Off}"
 echo ""
 echo -e "${Red}C => Para limpar o histórico de buscar EC2 🚫 ${Color_Off}"
@@ -23,7 +23,7 @@ read -p "Selecione o número de uma instância para iniciar uma sessão do SSM: 
 
 if [ "$selection_history" == 'c' ] || [ "$selection_history" == 'C' ]
 then
-echo -n "" > list
+echo -n "" > ~/.ssh/list
 echo " Histórico limpo com sucesso !!! "
 clear
 elif [ $selection_history -eq 0 ]
@@ -50,7 +50,7 @@ read -p "Selecione o número da instância para iniciar uma sessão do SSM 🖧:
 
 instance_id=$(echo "$instances" | awk "NR==$selection{print \$1}")
 instance_id_selection=$(echo "$instances" | awk "NR==$selection{print $1}")
-echo $instance_id_selection >> list
+echo $instance_id_selection >> ~/.ssh/list
 
 if [[ -z "$instance_id" ]]; then
   echo "Opção inválida !"
@@ -60,7 +60,7 @@ clear
 aws ssm start-session --target "$instance_id"
 
 else
-instance_id_history=$(cat list | awk "NR==$selection_history{print \$1}")
+instance_id_history=$(cat ~/.ssh/list | awk "NR==$selection_history{print \$1}")
 clear
 aws ssm start-session --target "$instance_id_history"
 
