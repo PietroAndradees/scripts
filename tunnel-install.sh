@@ -14,7 +14,7 @@ if [ "$resposta" = "apt" ]; then
   touch ~/.ssh/config
   echo "# SSH over Session Manager
 host i-* mi-*
-    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"" > ~/.ssh/config
+    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"" >> ~/.ssh/config
   sudo apt-get install sshuttle -y
   cd /usr/local/bin
   sudo wget https://raw.githubusercontent.com/PietroAndradees/scripts/main/tunnel-ssm-V2.sh -O tunnel-aws
@@ -25,7 +25,7 @@ elif [ "$resposta" = "yum" ]; then
   touch ~/.ssh/config
   echo "# SSH over Session Manager
 host i-* mi-*
-    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"" > ~/.ssh/config
+    ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"" >> ~/.ssh/config
   sudo yum install -y sshuttle
   cd /usr/local/bin
   sudo wget https://raw.githubusercontent.com/PietroAndradees/scripts/main/tunnel-ssm-V2.sh -O tunnel-aws
