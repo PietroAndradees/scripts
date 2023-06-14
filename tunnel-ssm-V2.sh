@@ -2,7 +2,7 @@
 #REGION=us-east-1
 pkill -9 sshuttle
 REGION=$(aws configure get region)
-CIDR="10.64.0.0/16 192.168.240.0/21"
+CIDR="10.64.0.0/16 192.168.248.0/21 10.110.0.0/21"
 REDE_LOCAL="XXX.XXX.XXX.XXX/XX" #SUA REDE LOCAL
 BASTION_INSTANCE=i-05360df5b9a5eb8ef #34.226.74.203
 NOME="NOME.SOBRENOME" #O mesmo prefixo do email coorporativo
@@ -15,7 +15,7 @@ echo "Usando a instancia $BASTION_INSTANCE como Tunnel"
 echo ""
 echo "Para fechar o Tunnel pressione Ctrl+c"
 echo "" 
-sshuttle --dns -N -r $NOME@$BASTION_INSTANCE $CIDR &
+sshuttle --dns -N -r $NOME@$BASTION_INSTANCE $CIDR &ç
 sleep 0.5
 sshuttle -l $DOCKER_GW -r $NOME@$BASTION_INSTANCE $CIDR -x $REDE_DOCKER &
 
