@@ -25,6 +25,7 @@ if [ "$selection_history" == 'c' ] || [ "$selection_history" == 'C' ]
 then
 echo -n "" > ~/.ssh/list
 echo " Histórico limpo com sucesso !!! "
+sleep 1
 clear
 elif [ $selection_history -eq 0 ]
 then
